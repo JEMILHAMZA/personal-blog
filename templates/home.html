@@ -1,0 +1,26 @@
+<!-- home.html -->
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Blog Posts</h2>
+    <div class="post-container">
+        {% for post in posts %}
+        
+            <div class="post-summary">
+                <a href="{{ url_for('post', id=post._id) }}">
+                <h3>{{ post.title }}</h3>
+                {% if post.image %}
+                <img src="{{ url_for('static', filename=post.image.split('static/')[1]) }}" alt="{{ post.title }} Image" style="max-width: 100%; height: auto;">
+                {% endif %}
+                <p>{{ post.content[:100] }}...</p>
+                <div class="post-actions">
+                    <a href="{{ url_for('edit', id=post._id) }}">Edit</a>
+                    <a href="{{ url_for('delete', id=post._id) }}">Delete</a>
+                </div>
+            </a>
+            </div>
+        
+        {% endfor %}
+    </div>
+{% endblock %}
+
+

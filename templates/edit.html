@@ -1,0 +1,24 @@
+<!-- edit.html -->
+<!-- edit.html -->
+{% extends 'base.html' %}
+{% block content %}
+    <div class="form-container">
+        <h2>Edit Post</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <label for="title">Title:</label>
+            {{ form.title(size=32) }}<br>
+            <label for="content">Content:</label>
+            {{ form.content(cols=40, rows=5) }}<br>
+            <label for="image">Image:</label>
+            {{ form.image() }}<br>
+            <p><strong>Current Image:</strong></p>
+            {% if blog_post.image %}
+                <img src="{{ url_for('static', filename=blog_post.image.split('static/')[1]) }}" alt="Current Image" style="max-width: 100%; height: auto;">
+            {% endif %}
+            {{ form.submit() }}
+        </form>
+    </div>
+{% endblock %}
+
+
